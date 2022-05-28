@@ -14,6 +14,7 @@ public class RubyController : MonoBehaviour
     bool isInvincible;
     float invincibleTimer;
 
+
     Rigidbody2D rigidbody2d;
 
     Animator animator;
@@ -71,13 +72,12 @@ public class RubyController : MonoBehaviour
             animator.SetTrigger("Hit");
             if (isInvincible)
                 return;
-
+            
             isInvincible = true;
             invincibleTimer = timeInvincible;
         }
-
         currentHealth = Mathf.Clamp(currentHealth + amount, 0, maxHealth);
-        Debug.Log(currentHealth + "/" + maxHealth);
+        UIHealthBar.instance.SetValue(currentHealth / (float)maxHealth);
     }
 
     void Launch()
